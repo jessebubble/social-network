@@ -1,3 +1,6 @@
+const { Schema, model } = require('mongoose');
+
+
 /* 
 username ()
 String
