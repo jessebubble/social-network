@@ -69,7 +69,7 @@ const thoughtController = {
     },
     addReaction({ params, body }, res) {
         Thought.findOneAndUpdate( // POST - create a reaction stored in a single thought's reactions array field
-            { _id: params.thoughtId }, // - giapi/thoughts/:thoughtId/reactions
+            { _id: params.thoughtId }, // - api/thoughts/:thoughtId/reactions
             { $addToSet: { reactions: body } },
             { new: true, runValidators: true }
         )
