@@ -66,8 +66,38 @@ const thoughtController = {
                 return;
             }
         })
+    },
+    addReaction({ params, body }, res) {
+        Thought.findOneAndUpdate( // POST - create a reaction stored in a single thought's reactions array field
+            { _id: params.thoughtId }, // - giapi/thoughts/:thoughtId/reactions
+            { $addToSet: { reactions: body } },
+            { new: true, runValidators: true }
+        )
+        .then((dbThoughtData) => {
+            if (!dbThoughtData) {
+                res.status(404).json({ message: 'No THOUGHT found with this id' });
+                return;
+            }
+            res.json(dbThoughtData);
+        })
+        .catch((err) => res.status(500).json(err));
+    },
+    deleteReaction({ params }, res) {
+        Thought.findOneAndUpdate(
+            { _id: params.thoughtId },
+            { $pull: { reactions: { reactionId: params.reactionId } } },
+            { new: true }
+        )
+        .then(dbThoughtData => {
+            if (!dbThoughtData) {
+                res.status(404).json({ message: 'No REACTION found' });
+                return;
+            }
+            res.json(dbThoughtData);
+        })
+        .catch(err => res.json(err));
     }
 
-}
+};
 
 module.exports = thoughtController;
