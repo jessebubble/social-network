@@ -12,3 +12,8 @@ Because the foundation of these applications is data, it’s important that you 
 - MongoDB database
 - Mongoose ODM
 - date-fns (a JavaScript date library)
+
+## Social Network API Walkthrough VIDEO
+* [Server Routes and more BackEnd FUN]( https://drive.google.com/file/d/1xCxliILSOFMnLhaxwd7gjbz31LMHWh93/view)
+
+![screenshot](./public/assets/images/social-network.gif)
